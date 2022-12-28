@@ -12,9 +12,9 @@ export default {
     data() {
         return {
             assignments: [
-                { name: 'Task 1', completed: false, id: 1},
-                { name: 'Task 2', completed: false, id: 2},
-                { name: 'Task 3', completed: false, id: 3}
+                { name: 'Task 1', completed: false, id: 1, tag: 'personal'},
+                { name: 'Task 2', completed: false, id: 2, tag: 'work'},
+                { name: 'Task 3', completed: false, id: 3, tag: 'work'}
             ]
         }
     },
