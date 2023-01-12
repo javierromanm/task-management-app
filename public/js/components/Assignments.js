@@ -3,15 +3,23 @@ import AssignmentCreate from "./AssignmentCreate.js"
 export default {
     components: {AssignmentList, AssignmentCreate},
     template: `
-        <section class="space-y-6">
-            <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
-            <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>      
-            <assignment-create @add="add"></assignment-create>
+        <section class="flex gap-8">
+            <assignment-list :assignments="filters.inProgress" title="In Progress">
+                <assignment-create @add="add"></assignment-create>
+            </assignment-list>
+            <assignment-list 
+                :assignments="filters.completed" 
+                title="Completed" 
+                can-toggle
+                @toggle="showList = !showList"
+                v-if="showList"></assignment-list>      
+            
         </section>
     `,
     data() {
         return {
-            assignments: []
+            assignments: [],
+            showList: true
         }
     },
     created() {

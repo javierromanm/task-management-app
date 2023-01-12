@@ -3,11 +3,14 @@ import AssignmentTags from "./AssignmentTags.js"
 export default {
     components: {Assignment, AssignmentTags},
     template: `        
-        <section v-show="assignments.length">        
-            <h2 class="font-bold mb-2">
-                {{ title }}
-                <span>({{ assignments.length }})</span>
-            </h2>
+        <section v-show="assignments.length" class="w-60">  
+            <div class="flex justify-between items-start">      
+                <h2 class="font-bold mb-2">
+                    {{ title }}
+                    <span>({{ assignments.length }})</span>
+                </h2>
+                <button v-show="canToggle" @click="$emit('toggle')">x</button>
+            </div>
             <assignment-tags 
                 :initial-tags="assignments.map(a => a.tag)"
                 v-model:currentTag="currentTag"/>
@@ -22,12 +25,14 @@ export default {
                             <input type="checkbox" v-model="assignment.completed">
                         </label>                    
                     </assignment>  
-            </ul>        
+            </ul>    
+            <slot></slot>    
         </section>        
     `,
     props: {
         assignments: Array,
         title: String,
+        canToggle: {type: Boolean, default: false}
     },  
     data() {
         return {
